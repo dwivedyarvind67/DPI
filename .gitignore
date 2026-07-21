@@ -1,0 +1,25 @@
+# Compiled Java class files
+out/
+*.class
+
+# PCAP output files
+output.pcap
+output_java.pcap
+test_output.pcap
+
+# C++ compiled binary
+dpi_engine
+dpi_engine.exe
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.vs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build directories
+build/
