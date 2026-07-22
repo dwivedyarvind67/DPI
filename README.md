@@ -51,7 +51,15 @@ graph LR
 
 ## 📦 Getting Started
 
-### 1. Start the Frontend Dashboard
+### 1. Deploy the Frontend Dashboard (Quickest)
+
+You can instantly deploy the frontend dashboard to Vercel for free by clicking the button below:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdwivedyarvind67%2FDPI&root-directory=pcap-dashboard)
+
+*Note: When deploying, Vercel will automatically detect it's a Next.js app and build it.*
+
+### 2. Run the Frontend Locally
 Navigate to the dashboard directory, install dependencies, and start the development server:
 
 ```bash
