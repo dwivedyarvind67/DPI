@@ -15,13 +15,16 @@ export function Sidebar() {
   ];
 
   return (
-    <div className="w-64 border-r border-border bg-card flex flex-col">
-      <div className="h-16 flex items-center px-6 border-b border-border">
-        <ShieldAlert className="w-6 h-6 text-primary mr-2" />
-        <span className="font-bold text-lg tracking-tight">DPI Engine</span>
+    <div className="w-64 border-r border-border/50 bg-card/40 backdrop-blur-xl flex flex-col shadow-[4px_0_24px_rgba(0,0,0,0.2)] z-10">
+      <div className="h-16 flex items-center px-6 border-b border-border/50 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent pointer-events-none" />
+        <ShieldAlert className="w-6 h-6 text-primary mr-3 drop-shadow-[0_0_8px_rgba(var(--primary),0.8)]" />
+        <span className="font-bold text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">
+          DPI Engine
+        </span>
       </div>
       
-      <nav className="flex-1 py-4 flex flex-col gap-1 px-3">
+      <nav className="flex-1 py-6 flex flex-col gap-2 px-4">
         {routes.map((route) => {
           const isActive = pathname.startsWith(route.path);
           const Icon = route.icon;
@@ -30,13 +33,13 @@ export function Sidebar() {
             <Link
               key={route.path}
               href={route.path}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition-colors ${
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ${
                 isActive 
-                  ? "bg-primary/10 text-primary" 
-                  : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                  ? "bg-gradient-to-r from-primary/20 to-primary/5 text-primary shadow-[inset_4px_0_0_rgba(var(--primary),1)]" 
+                  : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground hover:translate-x-1"
               }`}
             >
-              <Icon className="w-5 h-5" />
+              <Icon className={`w-5 h-5 ${isActive ? 'drop-shadow-[0_0_8px_rgba(var(--primary),0.8)]' : ''}`} />
               {route.name}
             </Link>
           );
