@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Activity, Settings, List, FileDown, ShieldAlert } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -46,7 +47,8 @@ export function Sidebar() {
         })}
       </nav>
       
-      <div className="p-4 border-t border-border">
+      <div className="p-4 border-t border-border flex justify-between items-center">
+        <ThemeToggle />
         <div className="text-xs text-muted-foreground text-center">
           DPI Engine v2.0 • Status: Idle
         </div>
