@@ -29,7 +29,6 @@ export function RuleEditor() {
   const setRules = usePipelineStore((state) => state.setRules);
   const addRuleToStore = usePipelineStore((state) => state.addRule);
   const removeRuleFromStore = usePipelineStore((state) => state.removeRule);
-  const isRunning = usePipelineStore((state) => state.stats.running);
   
   const [loading, setLoading] = useState(true);
 
@@ -77,7 +76,7 @@ export function RuleEditor() {
                 <FormItem className="w-full sm:w-[150px]">
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger disabled={isRunning}><SelectValue placeholder="Field" /></SelectTrigger>
+                      <SelectTrigger><SelectValue placeholder="Field" /></SelectTrigger>
                     </FormControl>
                     <SelectContent>
                       <SelectItem value="dport">Dest Port</SelectItem>
@@ -97,7 +96,7 @@ export function RuleEditor() {
                 <FormItem className="w-full sm:w-[80px]">
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger disabled={isRunning}><SelectValue placeholder="Op" /></SelectTrigger>
+                      <SelectTrigger><SelectValue placeholder="Op" /></SelectTrigger>
                     </FormControl>
                     <SelectContent>
                       <SelectItem value="=">==</SelectItem>
@@ -114,7 +113,7 @@ export function RuleEditor() {
               render={({ field }) => (
                 <FormItem className="flex-1">
                   <FormControl>
-                    <Input placeholder="Value (e.g. 443, 192.168.1.1)" disabled={isRunning} {...field} />
+                    <Input placeholder="Value (e.g. 443, 192.168.1.1)" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -128,7 +127,7 @@ export function RuleEditor() {
                 <FormItem className="w-full sm:w-[120px]">
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger disabled={isRunning}><SelectValue placeholder="Action" /></SelectTrigger>
+                      <SelectTrigger><SelectValue placeholder="Action" /></SelectTrigger>
                     </FormControl>
                     <SelectContent>
                       <SelectItem value="forward">Forward</SelectItem>
@@ -139,7 +138,7 @@ export function RuleEditor() {
               )}
             />
 
-            <Button type="submit" size="icon" className="shrink-0" disabled={isRunning}><Plus className="w-4 h-4" /></Button>
+            <Button type="submit" size="icon" className="shrink-0"><Plus className="w-4 h-4" /></Button>
           </form>
         </Form>
 
@@ -169,7 +168,7 @@ export function RuleEditor() {
                       </Badge>
                     </TableCell>
                     <TableCell>
-                      <Button variant="ghost" size="icon" onClick={() => handleDelete(rule.id)} disabled={isRunning} className="h-8 w-8 text-muted-foreground hover:text-destructive">
+                      <Button variant="ghost" size="icon" onClick={() => handleDelete(rule.id)} className="h-8 w-8 text-muted-foreground hover:text-destructive">
                         <Trash2 className="w-4 h-4" />
                       </Button>
                     </TableCell>
