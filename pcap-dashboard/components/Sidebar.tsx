@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Activity, Settings, List, FileDown, ShieldAlert } from "lucide-react";
+import { Activity, Settings, List, FileDown, ShieldAlert, BookOpen } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 
 export function Sidebar() {
@@ -13,6 +13,7 @@ export function Sidebar() {
     { name: "Config", path: "/config", icon: Settings },
     { name: "Flows", path: "/flows", icon: List },
     { name: "Output", path: "/output", icon: FileDown },
+    { name: "Blog", path: "/blog", icon: BookOpen },
   ];
 
   return (
