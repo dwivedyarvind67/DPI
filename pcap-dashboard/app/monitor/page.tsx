@@ -10,15 +10,13 @@ export default function MonitorPage() {
   usePipelineStats();
 
   return (
-    <div className="p-8 h-full flex flex-col overflow-y-auto">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Live Pipeline Monitor</h1>
-          <p className="text-muted-foreground mt-1">Real-time telemetry from the DPI engine.</p>
-        </div>
+    <div className="p-6 lg:p-8 h-full flex flex-col overflow-y-auto gap-5">
+      <div>
+        <h1 className="text-xl font-semibold tracking-tight">Live Pipeline Monitor</h1>
+        <p className="text-sm text-muted-foreground mt-0.5">Real-time telemetry from the DPI engine.</p>
       </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <div className="flex flex-col gap-5">
         <PipelineDiagram />
         <ThroughputChart />
         <WorkerLoadBars />

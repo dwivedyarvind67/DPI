@@ -165,12 +165,17 @@ def main():
         ('192.0.78.24', 'www.cloudflare.com', 443),
         ('13.107.42.14', 'www.microsoft.com', 443),
         ('17.253.144.10', 'www.apple.com', 443),
+        ('151.101.1.140', 'www.reddit.com', 443),
+        ('157.240.22.60', 'web.whatsapp.com', 443),
+        ('3.120.121.23', 'api.slack.com', 443),
+        ('204.79.197.200', 'www.bing.com', 443),
     ]
     
     # HTTP connections (unencrypted)
     http_connections = [
         ('93.184.216.34', 'example.com', 80),
         ('185.199.108.153', 'httpbin.org', 80),
+        ('172.217.16.14', 'neverssl.com', 80),
     ]
     
     # DNS queries
@@ -179,6 +184,8 @@ def main():
         'www.youtube.com',
         'www.facebook.com',
         'api.twitter.com',
+        'www.reddit.com',
+        'api.slack.com'
     ]
     
     seq_base = 1000

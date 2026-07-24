@@ -26,10 +26,11 @@ export function DownloadButton() {
     <Button 
       onClick={handleDownload} 
       disabled={isRunning}
-      className="gap-2 shadow-[0_0_15px_rgba(var(--primary),0.3)] transition-all hover:shadow-[0_0_25px_rgba(var(--primary),0.5)]"
+      size="sm"
+      className="gap-2"
     >
       <Download className="w-4 h-4" />
-      Download PCAP
+      {isRunning ? "Stop Pipeline to Download" : "Download PCAP"}
     </Button>
   );
 }

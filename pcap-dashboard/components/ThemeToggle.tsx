@@ -13,7 +13,7 @@ export function ThemeToggle() {
   }, []);
 
   if (!mounted) {
-    return <div className="h-10 w-full" />;
+    return <div className="h-9 w-full" />;
   }
 
   const isDark = theme === "dark";
@@ -21,9 +21,9 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 text-muted-foreground hover:bg-secondary/50 hover:text-foreground hover:translate-x-1 w-full text-left"
+      className="flex items-center gap-2.5 w-full px-3 py-2 rounded-md text-[13px] font-medium text-muted-foreground hover:bg-accent hover:text-foreground transition-colors duration-150"
     >
-      {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+      {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
       {isDark ? "Light Mode" : "Dark Mode"}
     </button>
   );
