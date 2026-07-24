@@ -21,7 +21,7 @@ export function Sidebar() {
       <div className="h-16 flex items-center px-6 border-b border-border/50 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent pointer-events-none" />
         <ShieldAlert className="w-6 h-6 text-primary mr-3 drop-shadow-[0_0_8px_rgba(var(--primary),0.8)]" />
-        <span className="font-bold text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">
+        <span className="font-bold text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
           DPI Engine
         </span>
       </div>
