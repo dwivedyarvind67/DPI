@@ -1,16 +1,31 @@
-# High-Performance DPI Engine & Telemetry Dashboard
+<div align="center">
+  
+  # 🚀 High-Performance DPI Engine & Telemetry Dashboard
+  
+  **A state-of-the-art Deep Packet Inspection (DPI) and network telemetry platform.**
+  
+  [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+  [![Java](https://img.shields.io/badge/Java-21-orange?style=for-the-badge&logo=java)](https://www.java.com/)
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+  [![Zustand](https://img.shields.io/badge/State-Zustand-764ABC?style=for-the-badge)](https://zustand-demo.pmnd.rs/)
 
-A state-of-the-art Deep Packet Inspection (DPI) and network telemetry platform. This project features a high-throughput **Java FastPath backend** for dissecting packets and a premium, highly-responsive **Next.js 15 dashboard** for real-time visualization and control.
+  *This project features a high-throughput **Java FastPath backend** for dissecting packets and a premium, highly-responsive **Next.js 15 dashboard** for real-time visualization and control.*
 
-## 📸 Screenshots
+</div>
 
-| Dark Mode | Light Mode |
+---
+
+## 📸 Dashboard Sneak Peek
+
+*(Note to developer: Replace these placeholders with actual screenshots of your running app by saving them to a `docs/` folder)*
+
+| 🌙 Dark Mode | ☀️ Light Mode |
 | :---: | :---: |
-| ![Monitor Dashboard (Dark)](docs/monitor-dark.png)<br>*(Real-time telemetry and pipeline diagram)* | ![Monitor Dashboard (Light)](docs/monitor-light.png)<br>*(Real-time telemetry and pipeline diagram)* |
-| ![Configuration (Dark)](docs/config-dark.png)<br>*(Rule editor and worker configuration)* | ![Configuration (Light)](docs/config-light.png)<br>*(Rule editor and worker configuration)* |
-| ![Flows (Dark)](docs/flows-dark.png)<br>*(Live tracking of network connections)* | ![Flows (Light)](docs/flows-light.png)<br>*(Live tracking of network connections)* |
+| <img src="https://placehold.co/600x350/121212/ffffff?text=Monitor+Dashboard+(Dark)" width="400" alt="Monitor Dark"><br>*(Real-time telemetry and pipeline diagram)* | <img src="https://placehold.co/600x350/f8f9fa/121212?text=Monitor+Dashboard+(Light)" width="400" alt="Monitor Light"><br>*(Real-time telemetry and pipeline diagram)* |
+| <img src="https://placehold.co/600x350/121212/ffffff?text=Configuration+(Dark)" width="400" alt="Config Dark"><br>*(Rule editor and worker configuration)* | <img src="https://placehold.co/600x350/f8f9fa/121212?text=Configuration+(Light)" width="400" alt="Config Light"><br>*(Rule editor and worker configuration)* |
+| <img src="https://placehold.co/600x350/121212/ffffff?text=Traffic+Flows+(Dark)" width="400" alt="Flows Dark"><br>*(Live tracking of network connections)* | <img src="https://placehold.co/600x350/f8f9fa/121212?text=Traffic+Flows+(Light)" width="400" alt="Flows Light"><br>*(Live tracking of network connections)* |
 
-*(Note: Create a `docs/` folder in the root and add screenshots named as above to display them here)*
+---
 
 ## 🚀 Key Features
 
