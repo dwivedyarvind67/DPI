@@ -1,115 +1,247 @@
 <div align="center">
-  
-  # 🚀 High-Performance DPI Engine & Telemetry Dashboard
-  
-  **A state-of-the-art Deep Packet Inspection (DPI) and network telemetry platform.**
-  
-  [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-  [![Java](https://img.shields.io/badge/Java-21-orange?style=for-the-badge&logo=java)](https://www.java.com/)
-  [![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
-  [![Zustand](https://img.shields.io/badge/State-Zustand-764ABC?style=for-the-badge)](https://zustand-demo.pmnd.rs/)
 
-  *This project features a high-throughput **Java FastPath backend** for dissecting packets and a premium, highly-responsive **Next.js 15 dashboard** for real-time visualization and control.*
+# 🛡️ DPI Engine
+
+### High-Performance Deep Packet Inspection & Real-Time Telemetry Dashboard
+
+[![Next.js](https://img.shields.io/badge/Next.js_15-000000?style=flat-square&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![Java](https://img.shields.io/badge/Java_21-ED8B00?style=flat-square&logo=openjdk&logoColor=white)](https://openjdk.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Python](https://img.shields.io/badge/Python_3-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+
+A production-grade network packet inspection platform featuring a multi-threaded **Java FastPath engine** for wire-speed packet dissection and a responsive **Next.js 15 dashboard** for real-time visualization and control.
+
+[Live Demo](#) · [Report Bug](https://github.com/dwivedyarvind67/DPI/issues) · [Request Feature](https://github.com/dwivedyarvind67/DPI/issues)
 
 </div>
 
 ---
 
-## 📸 Dashboard Sneak Peek
+## 📸 Dashboard Preview
 
-*(Note to developer: Replace these placeholders with actual screenshots of your running app by saving them to a `docs/` folder)*
-
-| 🌙 Dark Mode | ☀️ Light Mode |
-| :---: | :---: |
-| <img src="https://placehold.co/600x350/121212/ffffff?text=Monitor+Dashboard+(Dark)" width="400" alt="Monitor Dark"><br>*(Real-time telemetry and pipeline diagram)* | <img src="https://placehold.co/600x350/f8f9fa/121212?text=Monitor+Dashboard+(Light)" width="400" alt="Monitor Light"><br>*(Real-time telemetry and pipeline diagram)* |
-| <img src="https://placehold.co/600x350/121212/ffffff?text=Configuration+(Dark)" width="400" alt="Config Dark"><br>*(Rule editor and worker configuration)* | <img src="https://placehold.co/600x350/f8f9fa/121212?text=Configuration+(Light)" width="400" alt="Config Light"><br>*(Rule editor and worker configuration)* |
-| <img src="https://placehold.co/600x350/121212/ffffff?text=Traffic+Flows+(Dark)" width="400" alt="Flows Dark"><br>*(Live tracking of network connections)* | <img src="https://placehold.co/600x350/f8f9fa/121212?text=Traffic+Flows+(Light)" width="400" alt="Flows Light"><br>*(Live tracking of network connections)* |
+<table>
+  <tr>
+    <td align="center"><strong>🌙 Dark Mode</strong></td>
+    <td align="center"><strong>☀️ Light Mode</strong></td>
+  </tr>
+  <tr>
+    <td><img src="docs/monitor-dark.jpg" width="480" alt="Monitor — Dark Mode"/></td>
+    <td><img src="docs/monitor-light.jpg" width="480" alt="Monitor — Light Mode"/></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><em>Live Pipeline Monitor — Real-time throughput chart, pipeline diagram, and per-worker load bars</em></td>
+  </tr>
+  <tr>
+    <td><img src="docs/config-dark.jpg" width="480" alt="Configuration — Dark Mode"/></td>
+    <td><img src="docs/config-light.jpg" width="480" alt="Configuration — Light Mode"/></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><em>Configuration — PCAP upload, worker thread tuning, and dynamic filtering rules</em></td>
+  </tr>
+  <tr>
+    <td><img src="docs/flows-dark.jpg" width="480" alt="Traffic Flows — Dark Mode"/></td>
+    <td><img src="docs/flows-light.jpg" width="480" alt="Traffic Flows — Light Mode"/></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><em>Traffic Flows — Sortable, filterable table of every inspected connection</em></td>
+  </tr>
+</table>
 
 ---
 
-## 🚀 Key Features
+## ✨ Key Features
 
-- **FastPath Architecture:** Multi-threaded packet processing engine capable of handling millions of packets per second without dropping frames.
-- **Lock-Free Ring Buffers:** Zero-contention telemetry data collection that never blocks the critical data plane.
-- **Dynamic Rules Engine:** Apply, update, and remove L3/L4 packet filtering and dropping rules on the fly.
-- **Real-Time Telemetry Dashboard:** 
-  - Built with **Next.js 15**, **React**, and **Tailwind CSS**.
-  - Clean, professional SaaS design aesthetics.
-  - Seamless toggle between Light Mode and Dark Mode.
-  - Live 60fps throughput charts, individual worker load bars, and active flow tables driven by WebSockets.
-- **REST Control Plane:** Safely upload PCAP files, toggle the engine, and configure worker threads via a decoupled REST API.
+| Category | Details |
+| :--- | :--- |
+| **FastPath Architecture** | Multi-threaded packet processing engine capable of handling millions of packets per second without frame loss. |
+| **Lock-Free Ring Buffers** | Zero-contention telemetry collection — the data plane never blocks on locks or I/O. |
+| **Dynamic Rules Engine** | Create, update, and delete L3/L4 filtering rules on the fly (IP, port, protocol). |
+| **Deep Packet Inspection** | Extracts TLS SNI, DNS queries, and HTTP hostnames from packet payloads for application-layer classification. |
+| **Real-Time Dashboard** | 60 fps live throughput charts, individual worker load bars, and active flow tables driven by WebSockets. |
+| **Dual Theme** | Seamless light and dark mode toggle with a professional, clean design system. |
+| **PCAP Download** | Download the filtered output PCAP after processing for offline analysis in Wireshark. |
 
-## 🏗️ System Architecture
+---
+
+## 🏗️ Architecture
 
 ```mermaid
 graph LR
-    A[PCAP / Network] -->|Ingress| B(Load Balancer)
-    B -->|Hash 5-Tuple| C(FastPath Workers)
-    C -->|Match Rules| D{Drop or Forward?}
-    D -->|Forward| E[Egress]
+    A["📁 PCAP / NIC"] -->|Ingress| B("⚖️ Load Balancer<br/>Hash 5-Tuple")
+    B --> C("⚡ FastPath Workers<br/>N Threads")
+    C -->|Match Rules| D{"🛡️ Drop or<br/>Forward?"}
+    D -->|Forward| E["📤 Egress Writer"]
+    D -->|Drop| F["🗑️ Discard"]
     
-    C -.->|Lock-Free Updates| F((Ring Buffers))
-    F -.->|Telemetry Thread| G[WebSocket Server]
-    G -.->|60fps Stream| H[Next.js Dashboard]
+    C -.->|Lock-Free| G(("📊 Ring Buffers"))
+    G -.->|Telemetry Thread| H["🔌 WebSocket Server"]
+    H -.->|60fps Stream| I["🖥️ Next.js Dashboard"]
     
-    H -.->|REST API| I[Control Plane]
-    I -.->|Configure| B
-    I -.->|Update Rules| C
+    I -.->|REST API| J["🎛️ Control Plane"]
+    J -.->|Configure| B
+    J -.->|Update Rules| C
 ```
+
+---
 
 ## 🛠️ Tech Stack
 
-### Frontend (pcap-dashboard)
-- **Framework:** Next.js 15 (App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS v4, shadcn/ui
-- **State Management:** Zustand
-- **Data Visualization:** Recharts, TanStack Table
-- **Icons:** Lucide React
+### Frontend — `pcap-dashboard/`
 
-### Backend (DPI Engine)
-- **Language:** Java 21 (High-Performance FastPath)
-- **Packet Processing:** Native bindings / Java PCAP libraries
-- **Testing:** Python 3 (Automated end-to-end testing suite)
-- **API:** REST (Control Plane) + WebSockets (Data Plane)
+| Technology | Purpose |
+| :--- | :--- |
+| [Next.js 15](https://nextjs.org/) (App Router) | React framework with server components |
+| [TypeScript](https://www.typescriptlang.org/) | Type-safe application logic |
+| [Tailwind CSS v4](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/) | Design system and UI primitives |
+| [Zustand](https://zustand-demo.pmnd.rs/) | Lightweight global state management |
+| [Recharts](https://recharts.org/) | Real-time data visualization |
+| [TanStack Table](https://tanstack.com/table) | Headless, sortable, filterable data tables |
+| [Lucide React](https://lucide.dev/) | Icon library |
 
-## 📦 Getting Started
+### Backend — Java DPI Engine
 
-### 1. Deploy the Frontend Dashboard (Quickest)
+| Technology | Purpose |
+| :--- | :--- |
+| Java 21 | High-performance packet processing engine |
+| Custom PCAP Parser | Native binary reader for `.pcap` file format |
+| TLS/DNS/HTTP Dissectors | Protocol-aware deep packet inspection modules |
+| Rules Engine | Dynamic packet classification and filtering |
+| PCAP Writer | Outputs filtered traffic to a new `.pcap` file |
 
-You can instantly deploy the frontend dashboard to Vercel for free by clicking the button below:
+### Testing — Python Automation
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdwivedyarvind67%2FDPI&root-directory=pcap-dashboard)
+| Technology | Purpose |
+| :--- | :--- |
+| Python 3 + Scapy | Synthetic PCAP generation with realistic TLS/DNS/HTTP traffic |
+| Automated Test Suite | 7-test pipeline: compile → run → validate → report |
 
-*Note: When deploying, Vercel will automatically detect it's a Next.js app and build it.*
+---
 
-### 2. Run the Frontend Locally
-Navigate to the dashboard directory, install dependencies, and start the development server:
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js** 18+ and **npm**
+- **Java JDK** 21+
+- **Python** 3.x (for running the test suite)
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/dwivedyarvind67/DPI.git
+cd DPI
+```
+
+### 2. Run the Frontend Dashboard
 
 ```bash
 cd pcap-dashboard
 npm install
 npm run dev
 ```
-The dashboard will be available at [http://localhost:3000](http://localhost:3000).
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### 3. Run the Backend Engine Tests
-We have built an automated Python test suite that generates PCAP files, compiles the Java engine, and verifies its filtering rules.
 
-Requirements:
-- Java JDK 21+
-- Python 3.x
+From the project root:
 
 ```bash
-# Generate test traffic and run the Java engine
 python test_dpi_engine.py
 ```
-This script will output a detailed summary of the pipeline execution and generate a filtered output file (`output.pcap`).
 
-## 📖 Learn More
+This automated suite will:
+1. Generate a test PCAP with 97+ synthetic packets (TLS, DNS, HTTP traffic from 20+ domains).
+2. Compile the entire Java DPI engine.
+3. Run the engine with no rules, application blocking, IP blocking, and combined rules.
+4. Validate the filtered output PCAP for integrity.
 
-Once the dashboard is running, navigate to the **Blog / How It Works** tab in the sidebar to read an in-depth breakdown of the FastPath worker architecture, lock-free ring buffers, and the rules engine!
+Expected output:
+
+```
+============================================================
+  TEST SUMMARY
+============================================================
+  [+] PASS  Test 1: Generate the test PCAP file.
+  [+] PASS  Test 2: Compile the Java engine.
+  [+] PASS  Test 3: Run the DPI engine with no blocking rules.
+  [+] PASS  Test 4: Run the DPI engine with application blocking.
+  [+] PASS  Test 5: Run the DPI engine with IP blocking.
+  [+] PASS  Test 6: Run with combined blocking rules.
+  [+] PASS  Test 7: Verify the output PCAP file is valid.
+
+  Total: 7  Passed: 7  Failed: 0
+  All tests passed!
+============================================================
+```
+
+### 4. Deploy to Production
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdwivedyarvind67%2FDPI&root-directory=pcap-dashboard)
+
+One-click deploy the frontend dashboard to Vercel. The platform auto-detects the Next.js configuration.
 
 ---
 
-**Author:** Arvind Dwivedi
+## 📂 Project Structure
+
+```
+DPI/
+├── pcap-dashboard/              # Next.js 15 Frontend
+│   ├── app/                     # App Router pages
+│   │   ├── monitor/             # Live pipeline telemetry
+│   │   ├── config/              # Upload, rules, worker config
+│   │   ├── flows/               # Traffic flow table
+│   │   ├── output/              # Summary stats & PCAP download
+│   │   └── blog/                # Architecture documentation
+│   ├── components/              # Reusable UI components
+│   │   ├── pipeline/            # PipelineDiagram, ThroughputChart, WorkerBars
+│   │   ├── config/              # UploadCard, RuleEditor, WorkerSlider
+│   │   ├── output/              # SummaryCards, RunLog, DownloadButton
+│   │   └── flows/               # FlowTable (TanStack)
+│   ├── store/                   # Zustand state management
+│   ├── lib/                     # API client, types, utilities
+│   └── hooks/                   # Custom React hooks
+│
+├── src/                         # Java DPI Backend Engine
+│   ├── PcapReader.java          # Binary PCAP file parser
+│   ├── PcapWriter.java          # Filtered output writer
+│   ├── PacketParser.java        # L2/L3/L4 header dissection
+│   ├── TlsParser.java          # TLS ClientHello SNI extraction
+│   ├── DnsParser.java          # DNS query name extraction
+│   ├── HttpParser.java         # HTTP Host header extraction
+│   ├── RulesEngine.java        # Dynamic packet filtering
+│   ├── FastPathWorker.java     # Per-thread packet processor
+│   └── DpiEngine.java          # Main orchestrator
+│
+├── generate_test_pcap.py        # Synthetic traffic generator
+├── test_dpi_engine.py           # Automated end-to-end test suite
+├── docs/                        # Dashboard screenshots
+└── README.md
+```
+
+---
+
+## 📖 Learn More
+
+Once the dashboard is running, navigate to the **Blog** tab in the sidebar for an in-depth breakdown of:
+- The FastPath worker architecture
+- Lock-free ring buffer design
+- The rules engine internals
+- How the Next.js dashboard communicates with the backend
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+
+**Built with ❤️ by [Arvind Dwivedi](https://github.com/dwivedyarvind67)**
+
+</div>
