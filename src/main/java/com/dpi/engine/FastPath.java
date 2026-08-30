@@ -24,6 +24,12 @@ public class FastPath implements Runnable {
     private Thread thread;
     public final AtomicLong processed = new AtomicLong(0);
 
+    // optional live-stream hook (set by WebServer after construction)
+    private volatile com.dpi.server.WebServer webServer = null;
+
+    public void setWebServer(com.dpi.server.WebServer ws) { this.webServer = ws; }
+
+
     public FastPath(int id, RuleManager rules, Statistics stats, BlockingQueue<PacketJob> outputQueue) {
         this.id = id;
         this.rules = rules;
@@ -101,12 +107,15 @@ public class FastPath implements Runnable {
                 // Forward or drop
                 if (flow.blocked) {
                     stats.dropped.incrementAndGet();
+                    if (webServer != null) webServer.pushFlow(tuple, "drop", flow.sni, flow.appType);
                 } else {
                     stats.forwarded.incrementAndGet();
                     outputQueue.put(pkt);
+                    if (webServer != null) webServer.pushFlow(tuple, "forward", flow.sni, flow.appType);
                 }
 
                 processed.incrementAndGet();
+
 
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();

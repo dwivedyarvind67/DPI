@@ -195,4 +195,10 @@ public class DPIEngine {
         }
         return total;
     }
+
+    // ── accessors for WebServer ───────────────────────────────────────────────
+    public RuleManager getRuleManager() { return ruleManager; }
+    public Statistics   getStats()       { return stats; }
+    public java.util.List<FastPath> getFastPaths() { return java.util.Collections.unmodifiableList(fastPaths); }
 }
+

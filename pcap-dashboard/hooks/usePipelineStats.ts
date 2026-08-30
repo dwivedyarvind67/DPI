@@ -4,83 +4,109 @@ import { useEffect, useRef } from "react";
 import { usePipelineStore } from "../store/pipelineStore";
 import { Flow, WorkerStat } from "../lib/types";
 
-// Generates a mock flow event
-function generateMockFlow(): Flow {
-  const ips = ["192.168.1.10", "10.0.0.5", "172.16.0.4", "8.8.8.8", "1.1.1.1"];
-  const protos: ("TCP" | "UDP")[] = ["TCP", "TCP", "TCP", "UDP"];
-  
-  return {
-    id: Math.random().toString(36).substr(2, 9),
-    src: ips[Math.floor(Math.random() * ips.length)],
-    sport: Math.floor(Math.random() * 60000) + 1024,
-    dst: ips[Math.floor(Math.random() * ips.length)],
-    dport: [80, 443, 53, 22, 3306][Math.floor(Math.random() * 5)],
-    proto: protos[Math.floor(Math.random() * protos.length)],
-    worker: Math.floor(Math.random() * 4), // 4 mock workers
-    action: Math.random() > 0.1 ? "forward" : "drop",
-    timestamp: Date.now(),
-  };
+const WS_URL = process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:8080/ws";
+
+// Shape of the JSON payload streamed by the Java WebServer
+interface TelemetryPayload {
+  running: boolean;
+  totalRead: number;
+  totalForwarded: number;
+  totalDropped: number;
+  pps: number;
+  workers: { id: number; processed: number; loadPct: number }[];
+  flows: {
+    id: string;
+    src: string;
+    sport: number;
+    dst: string;
+    dport: number;
+    proto: "TCP" | "UDP" | "OTHER";
+    action: "forward" | "drop";
+    sni: string;
+    app: string;
+    timestamp: number;
+  }[];
 }
 
 export function usePipelineStats() {
   const updateStats = usePipelineStore((state) => state.updateStats);
-  const addFlows = usePipelineStore((state) => state.addFlows);
-  
-  const totalReadRef = useRef(0);
-  const totalForwardedRef = useRef(0);
-  const totalDroppedRef = useRef(0);
+  const addFlows    = usePipelineStore((state) => state.addFlows);
+
+  const wsRef     = useRef<WebSocket | null>(null);
+  const retryRef  = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    // Mock WebSocket simulation
-    let flowBatch: Flow[] = [];
-    
-    // 1. High frequency flow generation (e.g. 50 flows/sec)
-    const flowInterval = setInterval(() => {
-      flowBatch.push(generateMockFlow());
-    }, 20);
+    let destroyed = false;
 
-    // 2. Throttled store update for flows (every 250ms) to prevent UI lag
-    const batchInterval = setInterval(() => {
-      if (flowBatch.length > 0) {
-        addFlows([...flowBatch]);
-        
-        // Update stats based on generated flows
-        const forwarded = flowBatch.filter(f => f.action === "forward").length;
-        const dropped = flowBatch.length - forwarded;
-        
-        totalReadRef.current += flowBatch.length;
-        totalForwardedRef.current += forwarded;
-        totalDroppedRef.current += dropped;
-        
-        flowBatch = []; // Reset batch
-      }
-    }, 250);
+    function connect() {
+      if (destroyed) return;
 
-    // 3. Stats updates (every 1s)
-    const statsInterval = setInterval(() => {
-      const pps = Math.floor(Math.random() * 500) + 1000; // Mock 1k-1.5k pps
-      
-      const workers: WorkerStat[] = Array.from({ length: 4 }).map((_, i) => ({
-        id: i,
-        processed: Math.floor(totalReadRef.current / 4) + Math.floor(Math.random() * 50),
-        queueDepth: Math.floor(Math.random() * 20),
-        loadPct: Math.floor(Math.random() * 80) + 10,
-      }));
+      const ws = new WebSocket(WS_URL);
+      wsRef.current = ws;
 
-      updateStats({
-        running: true,
-        totalRead: totalReadRef.current,
-        totalForwarded: totalForwardedRef.current,
-        totalDropped: totalDroppedRef.current,
-        pps,
-        workers,
-      });
-    }, 1000);
+      ws.onopen = () => {
+        console.log("[WS] Connected to DPI Engine WebSocket");
+      };
+
+      ws.onmessage = (event) => {
+        try {
+          const data: TelemetryPayload = JSON.parse(event.data as string);
+
+          // ── update stats ──────────────────────────────────────────────────
+          const workers: WorkerStat[] = data.workers.map((w) => ({
+            id: w.id,
+            processed: w.processed,
+            queueDepth: 0,
+            loadPct: w.loadPct,
+          }));
+
+          updateStats({
+            running: data.running,
+            totalRead: data.totalRead,
+            totalForwarded: data.totalForwarded,
+            totalDropped: data.totalDropped,
+            pps: data.pps,
+            workers,
+          });
+
+          // ── update flows ──────────────────────────────────────────────────
+          if (data.flows && data.flows.length > 0) {
+            const newFlows: Flow[] = data.flows.map((f) => ({
+              id: f.id,
+              src: f.src,
+              sport: f.sport,
+              dst: f.dst,
+              dport: f.dport,
+              proto: f.proto === "OTHER" ? "TCP" : f.proto,
+              worker: 0, // worker info not per-flow in this version
+              action: f.action,
+              timestamp: f.timestamp,
+            }));
+            addFlows(newFlows);
+          }
+        } catch (err) {
+          console.error("[WS] Parse error:", err);
+        }
+      };
+
+      ws.onclose = () => {
+        console.log("[WS] Disconnected — retrying in 3s…");
+        if (!destroyed) {
+          retryRef.current = setTimeout(connect, 3000);
+        }
+      };
+
+      ws.onerror = () => {
+        ws.close(); // trigger onclose → retry
+      };
+    }
+
+    connect();
 
     return () => {
-      clearInterval(flowInterval);
-      clearInterval(batchInterval);
-      clearInterval(statsInterval);
+      destroyed = true;
+      if (retryRef.current) clearTimeout(retryRef.current);
+      if (wsRef.current) wsRef.current.close();
     };
   }, [updateStats, addFlows]);
 }
